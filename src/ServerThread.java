@@ -10,7 +10,7 @@ import java.util.concurrent.Semaphore;
 public class ServerThread extends Thread{
 	
 	private Queue q;
-	private static final int max_file_size = 500;
+	private static final int max_file_size = 1000;
 	private Semaphore mutex;
 	private Calendar cal;
 	private static DateFormat dateFormat;
@@ -19,7 +19,7 @@ public class ServerThread extends Thread{
 		this.q = q;
 		this.mutex = mutex;
 		cal = Calendar.getInstance();
-		dateFormat = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss");
+		dateFormat = new SimpleDateFormat("dd-HH-mm-ss");
 	}
 	
 	public void run(){
@@ -39,7 +39,8 @@ public class ServerThread extends Thread{
 			
 			// If the file exceeds the limit rename the existing file and create a new empty one.
 			if(file.length() > max_file_size){
-				File newFileName = new File(file.getName() + (int)(Math.random() * 10));
+				String time = fileName + (dateFormat.format(cal.getTime())).toString();
+				File newFileName = new File(time);
 				file.renameTo(newFileName);
 				System.out.println(newFileName.getName() + " " + file.getName() + " " + file.length());
 				

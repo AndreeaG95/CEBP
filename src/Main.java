@@ -20,8 +20,6 @@ public class Main {
 		client = new Client(q, maxThreads);
 		client.start();
 		
-		//client.shutdown();
-		//server.shutdown();
 	}
 
 }

@@ -14,7 +14,6 @@ public class ClientThread extends Thread{
 
 		while (true) {
 			rand = (int) (Math.random() * 10);
-			//System.out.println(this.name + " " + rand);
 			switch (rand) {
 			case 0: // DEBUG
 			case 1:
@@ -39,7 +38,7 @@ public class ClientThread extends Thread{
 			}
 
 			try {
-				Thread.sleep(300);
+				Thread.sleep(700);
 			} catch (Exception e) {
 				throw new RuntimeException(this.name);
 			}
